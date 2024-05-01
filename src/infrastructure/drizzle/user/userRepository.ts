@@ -1,9 +1,9 @@
 import type { DrizzleD1Database } from "drizzle-orm/d1";
 
 import type { IUserRepository } from "@/domain/user/IUserRepository";
-import type { UserId } from "@/domain/user/userId";
 
 import { usersSchema } from "../schema";
+import { User } from "@/domain/user/user";
 
 const create: IUserRepository.Create<DrizzleD1Database> = async (input, db) => {
   try {
@@ -20,12 +20,12 @@ const create: IUserRepository.Create<DrizzleD1Database> = async (input, db) => {
 
     return {
       result: "success",
-      savedUser: {
-        id: createdUser.id as UserId,
+      data: User.buildSingle({
+        id: createdUser.id,
         displayId: createdUser.displayId,
         name: createdUser.name,
         email: createdUser.email,
-      },
+      }),
     };
   } catch (e) {
     return {

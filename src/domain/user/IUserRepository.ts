@@ -2,7 +2,10 @@ import { z } from "zod";
 
 import { User, type UserInput } from "./user";
 import type { UserIdInput } from "./userId";
-import { WithDBConnectFunction, WithResultResponse } from "@/types/repository";
+import type {
+  WithDBConnectFunction,
+  WithResultResponse,
+} from "@/types/repository";
 
 export interface IUserRepository<T> {
   list: IUserRepository.Get<T>;
@@ -21,12 +24,7 @@ export namespace IUserRepository {
   export namespace Create {
     const prams = User.schema.omit({ id: true });
     export type Params = z.input<typeof prams>;
-    export type Response =
-      | {
-          result: "success";
-          savedUser: User;
-        }
-      | { result: "failure" };
+    export type Response = WithResultResponse<User>;
   }
   export type Create<T> = WithDBConnectFunction<
     T,
