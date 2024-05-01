@@ -8,6 +8,13 @@
       "when": 1714360367439,
       "tag": "0000_good_dagger",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1714567405478,
+      "tag": "0001_dapper_william_stryker",
+      "breakpoints": true
     }
   ]
 }

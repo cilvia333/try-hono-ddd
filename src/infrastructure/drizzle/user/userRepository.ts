@@ -5,7 +5,7 @@ import type { IUserRepository } from "@/domain/user/IUserRepository";
 import { usersSchema } from "../schema";
 import { User } from "@/domain/user/user";
 
-const create: IUserRepository.Create<DrizzleD1Database> = async (input, db) => {
+const create: IUserRepository.Create<DrizzleD1Database> = async (db, input) => {
   try {
     const res = await db.batch([
       db.insert(usersSchema).values(input).returning({
