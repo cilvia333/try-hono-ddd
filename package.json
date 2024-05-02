@@ -3,11 +3,13 @@
     "dev": "wrangler dev src/index.ts",
     "deploy": "wrangler deploy --minify src/index.ts",
     "test": "vitest run",
-    "drizzle:up": "drizzle-kit up:sqlite",
-    "drizzle:drop": "drizzle-kit drop",
-    "migrate:generate": "drizzle-kit generate:sqlite",
-    "migrate:list:local": "wrangler d1 migrations list hono-ddd --local",
-    "migrate:apply:local": "wrangler d1 migrations apply hono-ddd --local"
+    "db:up": "drizzle-kit up:sqlite",
+    "db:drop": "drizzle-kit drop",
+    "db:studio": "drizzle-kit studio --port 3002 --verbose",
+    "db:studio:local": "cross-env LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit) drizzle-kit studio --port 3002 --verbose",
+    "db:generate": "drizzle-kit generate:sqlite",
+    "db:list:local": "wrangler d1 migrations list hono-ddd --local",
+    "db:migrate:local": "wrangler d1 migrations apply hono-ddd --local"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.2.1",
@@ -19,6 +21,9 @@
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.2.3",
     "@cloudflare/workers-types": "^4.20240403.0",
+    "@types/node": "^20.12.8",
+    "better-sqlite3": "^9.6.0",
+    "cross-env": "^7.0.3",
     "drizzle-kit": "^0.20.17",
     "vitest": "1.3.0",
     "wrangler": "^3.47.0"
