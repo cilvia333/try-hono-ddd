@@ -1,9 +1,7 @@
 import { z } from "zod";
 
-export declare const UserIdBrand: unique symbol;
-
 //NOTE: nanoid → 21 symbols
-const schema = z.string().length(21).brand(UserIdBrand);
+const schema = z.string().length(21).brand<"UserId">();
 
 export type UserId = z.infer<typeof schema>;
 export type UserIdInput = z.input<typeof schema>;

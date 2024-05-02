@@ -14,8 +14,6 @@ userApp.post("/", async (c) => {
     email: string;
   }>();
 
-  const res = await UserRepository.create(body, db);
-
   return c.json({});
 });
 
